@@ -16,6 +16,10 @@
 		F3533EA527AEC30A00FB9F84 /* NavigationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3533EA427AEC30A00FB9F84 /* NavigationTests.swift */; };
 		F3533EAF27AEC30A00FB9F84 /* NavigationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3533EAE27AEC30A00FB9F84 /* NavigationUITests.swift */; };
 		F3533EB127AEC30A00FB9F84 /* NavigationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3533EB027AEC30A00FB9F84 /* NavigationUITestsLaunchTests.swift */; };
+		F386456127B030550011A6C1 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F386455D27B030550011A6C1 /* Profile.storyboard */; };
+		F386456227B030550011A6C1 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F386455E27B030550011A6C1 /* ProfileView.swift */; };
+		F386456327B030550011A6C1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F386455F27B030550011A6C1 /* ProfileViewController.swift */; };
+		F386456427B030550011A6C1 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F386456027B030550011A6C1 /* ProfileView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		F3533EAA27AEC30A00FB9F84 /* NavigationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3533EAE27AEC30A00FB9F84 /* NavigationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUITests.swift; sourceTree = "<group>"; };
 		F3533EB027AEC30A00FB9F84 /* NavigationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F386455D27B030550011A6C1 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		F386455E27B030550011A6C1 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		F386455F27B030550011A6C1 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F386456027B030550011A6C1 /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,10 @@
 		F3533E8C27AEC30900FB9F84 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F386455D27B030550011A6C1 /* Profile.storyboard */,
+				F386455E27B030550011A6C1 /* ProfileView.swift */,
+				F386456027B030550011A6C1 /* ProfileView.xib */,
+				F386455F27B030550011A6C1 /* ProfileViewController.swift */,
 				F3533E8D27AEC30900FB9F84 /* AppDelegate.swift */,
 				F3533E8F27AEC30900FB9F84 /* SceneDelegate.swift */,
 				F3533E9127AEC30900FB9F84 /* ViewController.swift */,
@@ -232,7 +244,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3533E9A27AEC30A00FB9F84 /* LaunchScreen.storyboard in Resources */,
+				F386456427B030550011A6C1 /* ProfileView.xib in Resources */,
 				F3533E9727AEC30A00FB9F84 /* Assets.xcassets in Resources */,
+				F386456127B030550011A6C1 /* Profile.storyboard in Resources */,
 				F3533E9527AEC30900FB9F84 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,7 +272,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F386456227B030550011A6C1 /* ProfileView.swift in Sources */,
 				F3533E9227AEC30900FB9F84 /* ViewController.swift in Sources */,
+				F386456327B030550011A6C1 /* ProfileViewController.swift in Sources */,
 				F3533E8E27AEC30900FB9F84 /* AppDelegate.swift in Sources */,
 				F3533E9027AEC30900FB9F84 /* SceneDelegate.swift in Sources */,
 			);
@@ -444,7 +460,8 @@
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Profile;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -456,7 +473,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -472,7 +489,8 @@
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Profile;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -484,7 +502,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
