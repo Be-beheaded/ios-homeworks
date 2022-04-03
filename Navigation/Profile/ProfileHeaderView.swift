@@ -38,7 +38,7 @@ class ProfileHeaderView: UIView {
         return statusLabel
     }()
 
-    private let setStatusButton: UIButton = {
+    private lazy var setStatusButton: UIButton = {
         let setStatusButton = UIButton()
         setStatusButton.setTitle("Set status", for: .normal)
         setStatusButton.setTitleColor(.white, for: .normal)
@@ -57,7 +57,7 @@ class ProfileHeaderView: UIView {
         return setStatusButton
     }()
     
-    private let statusTextField: UITextField = {
+    private lazy var statusTextField: UITextField = {
         let statusTextField = UITextField()
         statusTextField.backgroundColor = .white
         statusTextField.layer.borderWidth = 1
