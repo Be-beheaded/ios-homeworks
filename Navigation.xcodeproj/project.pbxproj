@@ -14,10 +14,11 @@
 		F3533EA527AEC30A00FB9F84 /* NavigationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3533EA427AEC30A00FB9F84 /* NavigationTests.swift */; };
 		F3533EAF27AEC30A00FB9F84 /* NavigationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3533EAE27AEC30A00FB9F84 /* NavigationUITests.swift */; };
 		F3533EB127AEC30A00FB9F84 /* NavigationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3533EB027AEC30A00FB9F84 /* NavigationUITestsLaunchTests.swift */; };
+		F35645BA27E117E000700FF1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35645B927E117E000700FF1 /* ProfileViewController.swift */; };
+		F35645BC27E1181E00700FF1 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35645BB27E1181E00700FF1 /* ProfileHeaderView.swift */; };
 		F385AE0327D7D4420038F9FE /* FeedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385AE0227D7D4420038F9FE /* FeedNavigationController.swift */; };
 		F385AE0527D7D4880038F9FE /* ProfileNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385AE0427D7D4880038F9FE /* ProfileNavigationController.swift */; };
 		F385AE0727D7D4D40038F9FE /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385AE0627D7D4D40038F9FE /* FeedViewController.swift */; };
-		F385AE0927D7D5250038F9FE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385AE0827D7D5250038F9FE /* ProfileViewController.swift */; };
 		F385AE0B27D7D5710038F9FE /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385AE0A27D7D5710038F9FE /* PostViewController.swift */; };
 		F385AE0D27D7D66D0038F9FE /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385AE0C27D7D66D0038F9FE /* InfoViewController.swift */; };
 /* End PBXBuildFile section */
@@ -51,10 +52,11 @@
 		F3533EAA27AEC30A00FB9F84 /* NavigationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3533EAE27AEC30A00FB9F84 /* NavigationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUITests.swift; sourceTree = "<group>"; };
 		F3533EB027AEC30A00FB9F84 /* NavigationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F35645B927E117E000700FF1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F35645BB27E1181E00700FF1 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		F385AE0227D7D4420038F9FE /* FeedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedNavigationController.swift; sourceTree = "<group>"; };
 		F385AE0427D7D4880038F9FE /* ProfileNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavigationController.swift; sourceTree = "<group>"; };
 		F385AE0627D7D4D40038F9FE /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		F385AE0827D7D5250038F9FE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F385AE0A27D7D5710038F9FE /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		F385AE0C27D7D66D0038F9FE /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,13 +109,13 @@
 		F3533E8C27AEC30900FB9F84 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F35645B627E1179100700FF1 /* Profile */,
 				F3533E8D27AEC30900FB9F84 /* AppDelegate.swift */,
 				F3533E8F27AEC30900FB9F84 /* SceneDelegate.swift */,
 				F3533E9127AEC30900FB9F84 /* ViewController.swift */,
 				F385AE0227D7D4420038F9FE /* FeedNavigationController.swift */,
 				F385AE0427D7D4880038F9FE /* ProfileNavigationController.swift */,
 				F385AE0627D7D4D40038F9FE /* FeedViewController.swift */,
-				F385AE0827D7D5250038F9FE /* ProfileViewController.swift */,
 				F385AE0A27D7D5710038F9FE /* PostViewController.swift */,
 				F385AE0C27D7D66D0038F9FE /* InfoViewController.swift */,
 				F3533E9627AEC30A00FB9F84 /* Assets.xcassets */,
@@ -137,6 +139,15 @@
 				F3533EB027AEC30A00FB9F84 /* NavigationUITestsLaunchTests.swift */,
 			);
 			path = NavigationUITests;
+			sourceTree = "<group>";
+		};
+		F35645B627E1179100700FF1 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F35645B927E117E000700FF1 /* ProfileViewController.swift */,
+				F35645BB27E1181E00700FF1 /* ProfileHeaderView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,11 +281,12 @@
 			files = (
 				F385AE0B27D7D5710038F9FE /* PostViewController.swift in Sources */,
 				F3533E9227AEC30900FB9F84 /* ViewController.swift in Sources */,
+				F35645BA27E117E000700FF1 /* ProfileViewController.swift in Sources */,
 				F385AE0327D7D4420038F9FE /* FeedNavigationController.swift in Sources */,
 				F3533E8E27AEC30900FB9F84 /* AppDelegate.swift in Sources */,
 				F385AE0D27D7D66D0038F9FE /* InfoViewController.swift in Sources */,
 				F3533E9027AEC30900FB9F84 /* SceneDelegate.swift in Sources */,
-				F385AE0927D7D5250038F9FE /* ProfileViewController.swift in Sources */,
+				F35645BC27E1181E00700FF1 /* ProfileHeaderView.swift in Sources */,
 				F385AE0727D7D4D40038F9FE /* FeedViewController.swift in Sources */,
 				F385AE0527D7D4880038F9FE /* ProfileNavigationController.swift in Sources */,
 			);
