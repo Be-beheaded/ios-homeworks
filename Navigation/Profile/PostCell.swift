@@ -107,7 +107,7 @@ class PostCell: UITableViewCell {
         constraints.append(imageBackView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 12))
         constraints.append(imageBackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor))
         constraints.append(imageBackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor))
-        constraints.append(imageBackView.heightAnchor.constraint(equalToConstant: 350))
+        constraints.append(imageBackView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width))
         
         //Add descriptionLabel constraints
         constraints.append(descriptionLabel.topAnchor.constraint(equalTo: imageBackView.bottomAnchor, constant: 16))
