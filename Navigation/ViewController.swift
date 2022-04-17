@@ -16,19 +16,19 @@ class ViewController: UITabBarController {
         self.tabBar.tintColor = .darkText
         
         let feedViewController = FeedViewController()
-        let logInViewController = LogInViewController()
+        let profileViewController = ProfileViewController()
         
         feedViewController.title = "Лента"
-        logInViewController.title = "Профиль"
+        profileViewController.title = "Профиль"
         
         let feedNavigationController = FeedNavigationController(rootViewController: feedViewController)
-        let profileNavigationController = ProfileNavigationController(rootViewController: logInViewController)
+        let profileNavigationController = ProfileNavigationController(rootViewController: profileViewController)
         
         
         feedNavigationController.view.backgroundColor = .white
-        feedNavigationController.navigationBar.isTranslucent = true
+        feedNavigationController.navigationBar.isTranslucent = false
         profileNavigationController.view.backgroundColor = .white
-        profileNavigationController.navigationBar.isTranslucent = true
+        profileNavigationController.navigationBar.isTranslucent = false
         
         self.setViewControllers([feedNavigationController, profileNavigationController], animated: false)
         
