@@ -67,7 +67,6 @@ class ProfileHeaderView: UIView {
         statusTextField.translatesAutoresizingMaskIntoConstraints = false
         statusTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: statusTextField.frame.height))
         statusTextField.leftViewMode = .always
-        statusTextField.placeholder = "Type something.."
         statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         
         return statusTextField
