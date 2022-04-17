@@ -26,9 +26,9 @@ class ViewController: UITabBarController {
         
         
         feedNavigationController.view.backgroundColor = .white
-        feedNavigationController.navigationBar.isTranslucent = false
+        feedNavigationController.navigationBar.isTranslucent = true
         profileNavigationController.view.backgroundColor = .white
-        profileNavigationController.navigationBar.isTranslucent = false
+        profileNavigationController.navigationBar.isTranslucent = true
         
         self.setViewControllers([feedNavigationController, profileNavigationController], animated: false)
         

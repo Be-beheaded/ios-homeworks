@@ -8,6 +8,7 @@
 import UIKit
 
 class PhotosViewController: UIViewController {
+
     
     private lazy var layout: UICollectionViewFlowLayout = {
        let layout = UICollectionViewFlowLayout()
@@ -37,11 +38,14 @@ class PhotosViewController: UIViewController {
     
     private var dataSource: [String] = []
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Photos Gallery"
         dataSource = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]
-        navigationController?.setNavigationBarHidden(false, animated: true)
         view.addSubview(collectionView)
         addConstraints()
     }

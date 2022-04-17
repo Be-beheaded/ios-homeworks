@@ -30,6 +30,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.backgroundColor = .white
         view.backgroundColor = .systemGray6
         view.addSubview(tableView)
         dataSource = fetchData()
@@ -82,7 +83,8 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             let photosViewController = PhotosViewController()
-            navigationController?.pushViewController(photosViewController, animated: false)
+            tableView.deselectRow(at: indexPath, animated: true)
+            navigationController?.pushViewController(photosViewController, animated: true)
         }
     }
     
