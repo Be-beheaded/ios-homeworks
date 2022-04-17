@@ -29,7 +29,7 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .lightGray
-        
+        navigationController?.navigationBar.isTranslucent = false
         self.view.addSubview(self.button)
         
         self.button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20).isActive = true
