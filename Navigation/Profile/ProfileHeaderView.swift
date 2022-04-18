@@ -6,7 +6,9 @@ class ProfileHeaderView: UIView {
     
     private var statusText: String = "Waiting for something..."
     
-    private let avatarImageView: UIImageView = {
+    let tap = UITapGestureRecognizer()
+    
+     let avatarImageView: UIImageView = {
         let avatarImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         avatarImageView.image = UIImage(named: "Cat")
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -16,7 +18,6 @@ class ProfileHeaderView: UIView {
         avatarImageView.layer.borderColor = UIColor.white.cgColor
         avatarImageView.layer.cornerRadius = 60
         avatarImageView.clipsToBounds = true
-        
         return avatarImageView
     }()
 
@@ -84,6 +85,7 @@ class ProfileHeaderView: UIView {
         self.addSubview(statusTextField)
         statusLabel.text = self.statusText
         addConst()
+        avatarImageView.addGestureRecognizer(tap)
     }
     
     required init?(coder: NSCoder) {
@@ -96,6 +98,11 @@ class ProfileHeaderView: UIView {
     @objc private func statusTextChanged(_ textField: UITextField) {
         self.statusText = textField.text ?? ""
     }
+    
+    func expandAvatar(){
+        
+    }
+    
     func addConst(){
         var constraints = [NSLayoutConstraint]()
         

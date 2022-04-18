@@ -4,11 +4,40 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
-   private let profileHeader: ProfileHeaderView = {
-       let profileHeader = ProfileHeaderView()
-       profileHeader.translatesAutoresizingMaskIntoConstraints = false
-       return profileHeader
+    private lazy var hiddenAvatarImageView: UIImageView = {
+       let avatarImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+       avatarImageView.image = UIImage(named: "Cat")
+       avatarImageView.translatesAutoresizingMaskIntoConstraints = false
+       avatarImageView.contentMode = .scaleAspectFill
+       avatarImageView.layer.borderWidth = 3
+       avatarImageView.layer.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
+       avatarImageView.layer.borderColor = UIColor.white.cgColor
+       avatarImageView.layer.cornerRadius = 60
+       avatarImageView.clipsToBounds = true
+       avatarImageView.alpha = 0
+       return avatarImageView
    }()
+    
+    private lazy var backView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .systemGray5
+        view.alpha = 0
+        return view
+    }()
+    
+    private lazy var exitButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.cornerRadius = 25
+        button.backgroundColor = .white
+        button.tintColor = .black
+        button.setBackgroundImage(UIImage(systemName: "multiply"), for: .normal)
+        button.clipsToBounds = true
+        button.addTarget(self, action: #selector(didTapExitButton), for: .touchUpInside)
+        button.alpha = 0
+        return button
+    }()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -24,8 +53,45 @@ class ProfileViewController: UIViewController {
     
     private var dataSource: [Post] = []
     
+    private var avatarLeadingConstraint: NSLayoutConstraint?
+    private var avatarTopConstraint: NSLayoutConstraint?
+    private var avatarHeightConstraint: NSLayoutConstraint?
+    private var avatarWidthConstraint: NSLayoutConstraint?
+    private var avatarTrailingConstraint: NSLayoutConstraint?
+    private var avatarBottomConstraint: NSLayoutConstraint?
+    private var isAvatarExpanded: Bool = false
+    
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    @objc func avatarTap(_ sender: UITapGestureRecognizer) {
+        self.hiddenAvatarImageView.alpha = 1
+        self.isAvatarExpanded = true
+        self.avatarWidthConstraint?.isActive = self.isAvatarExpanded ? false : true
+        self.avatarHeightConstraint?.isActive = self.isAvatarExpanded ? false : true
+        self.avatarTrailingConstraint?.isActive = self.isAvatarExpanded ? true : false
+        self.avatarBottomConstraint?.isActive = self.isAvatarExpanded ? true : false
+        UIView.animate(withDuration: 0.5, animations: {
+            self.backView.alpha = 0.5
+            self.view.layoutIfNeeded()
+        }, completion: {_ in UIView.animate(withDuration: 0.3, animations: {
+            self.exitButton.alpha = 1
+        })})
+    }
+    
+    @objc func didTapExitButton() {
+        self.isAvatarExpanded = false
+        self.avatarTrailingConstraint?.isActive = self.isAvatarExpanded ? true : false
+        self.avatarBottomConstraint?.isActive = self.isAvatarExpanded ? true : false
+        self.avatarWidthConstraint?.isActive = self.isAvatarExpanded ? false : true
+        self.avatarHeightConstraint?.isActive = self.isAvatarExpanded ? false : true
+
+        UIView.animate(withDuration: 0.5, animations: {
+            self.view.layoutIfNeeded()
+            self.backView.alpha = 0
+            self.exitButton.alpha = 0
+        }, completion: {_ in self.hiddenAvatarImageView.alpha = 0})
     }
     
     override func viewDidLoad() {
@@ -33,6 +99,9 @@ class ProfileViewController: UIViewController {
         navigationController?.navigationBar.backgroundColor = .white
         view.backgroundColor = .systemGray6
         view.addSubview(tableView)
+        view.addSubview(backView)
+        view.addSubview(hiddenAvatarImageView)
+        view.addSubview(exitButton)
         dataSource = fetchData()
         addConstraints()
     }
@@ -46,8 +115,29 @@ class ProfileViewController: UIViewController {
         constraints.append(tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor))
         constraints.append(tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor))
         
+        //Add Pic Constraints
+        avatarLeadingConstraint = self.hiddenAvatarImageView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16)
+        avatarTrailingConstraint = self.hiddenAvatarImageView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
+        avatarBottomConstraint = self.hiddenAvatarImageView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
+        avatarTopConstraint = self.hiddenAvatarImageView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 16)
+        avatarWidthConstraint = hiddenAvatarImageView.widthAnchor.constraint(equalToConstant: 120)
+        avatarHeightConstraint = hiddenAvatarImageView.heightAnchor.constraint(equalToConstant: 120)
+        
+        //Add exitButton constraints
+        constraints.append(exitButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16))
+        constraints.append(exitButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16))
+        constraints.append(exitButton.heightAnchor.constraint(equalToConstant: 50))
+        constraints.append(exitButton.widthAnchor.constraint(equalToConstant: 50))
+        
+        //Add backView constraints
+        constraints.append(backView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor))
+        constraints.append(backView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor))
+        constraints.append(backView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor))
+        constraints.append(backView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor))
+        
         //Activate constraints
         NSLayoutConstraint.activate(constraints)
+        NSLayoutConstraint.activate([self.avatarTopConstraint, self.avatarLeadingConstraint, self.avatarHeightConstraint, self.avatarWidthConstraint].compactMap({$0}))
     }
 }
 
@@ -69,11 +159,13 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-         var headerView = UIView()
          if section == 0 {
-             headerView = ProfileHeaderView()
+            let headerView = ProfileHeaderView()
+             headerView.tap.addTarget(self, action: #selector(avatarTap(_:)))
+             headerView.avatarImageView.isUserInteractionEnabled = true
+             return headerView
          }
-         return headerView
+        else { return UIView() }
      }
      
      func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
