@@ -93,7 +93,13 @@ class ProfileHeaderView: UIView {
     }
     
     @objc private func didTapButton() {
-        statusLabel.text = self.statusText
+        if(!statusTextField.hasText){
+            UIView.animate(withDuration: 0.4,animations: {self.statusTextField.backgroundColor = .red}, completion: { _ in UIView.animate(withDuration: 0.4, animations: {self.statusTextField.backgroundColor = .white}) })
+        } else {
+            statusTextField.backgroundColor = .white
+            statusLabel.text = self.statusText
+        }
+        
     }
     @objc private func statusTextChanged(_ textField: UITextField) {
         self.statusText = textField.text ?? ""

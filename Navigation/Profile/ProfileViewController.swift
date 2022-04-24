@@ -154,6 +154,12 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate{
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostCell
             let post = dataSource[indexPath.row]
             cell.setPosts(post: post)
+            cell.likesLabel.isUserInteractionEnabled = true
+            cell.likeButtonAction = {
+                [unowned self] in
+                dataSource[indexPath.row].likes += 1
+                cell.addLike()
+            }
             return cell
         }
     }
@@ -177,6 +183,14 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate{
             let photosViewController = PhotosViewController()
             tableView.deselectRow(at: indexPath, animated: true)
             navigationController?.pushViewController(photosViewController, animated: true)
+        }
+        if indexPath.section == 1{
+            let detailedPostViewController = DetailedPostViewController()
+            let cell = tableView.cellForRow(at: indexPath) as! PostCell
+            cell.addViews()
+            dataSource[indexPath.row].views += 1
+            detailedPostViewController.post = dataSource[indexPath.row]
+            navigationController?.present(detailedPostViewController, animated: true)
         }
     }
     

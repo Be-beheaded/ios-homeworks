@@ -8,7 +8,8 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
-   
+   let email = "user@usermail.com"
+   let password = "123qwe"
 
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -97,17 +98,28 @@ class LogInViewController: UIViewController {
         logInButton.clipsToBounds = true
         
         logInButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
- 
-        
-
         return logInButton
     }()
+    
+    private lazy var passAlertLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Password should be longer than 3 symbols"
+        return label
+    }()
+    
+    let alert = UIAlertController(title: "Alert", message: "Check if email or password is correct.", preferredStyle: .alert)
+
+    var isPassRightLength: Bool = true
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: true)
         self.becomeFirstResponder()
         view.backgroundColor = .white
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default))
+        passAlertLabel.alpha = 0
         configureSubviews()
         addConstraints()
     }
@@ -134,14 +146,27 @@ class LogInViewController: UIViewController {
         textFieldsStackView.addArrangedSubview(betweenLine)
         textFieldsStackView.addArrangedSubview(passwordTextField)
         contentView.addSubview(logInButton)
+        contentView.addSubview(passAlertLabel)
         scrollView.addSubview(contentView)
         scrollView.contentSize = CGSize(width: contentView.frame.width, height: contentView.frame.height)
     }
     
     @objc private func tapButton() {
         let profileViewController = ProfileViewController()
+        if(!emailTextField.hasText){
+            UIView.animate(withDuration: 0.4,animations: {self.emailTextField.backgroundColor = .red}, completion: { _ in UIView.animate(withDuration: 0.4, animations: {self.emailTextField.backgroundColor = .systemGray6}) }) }
+        if(!passwordTextField.hasText){
+            UIView.animate(withDuration: 0.4,animations: {self.passwordTextField.backgroundColor = .red}, completion: { _ in UIView.animate(withDuration: 0.4, animations: {self.passwordTextField.backgroundColor = .systemGray6}) }) }
+        
+        if (passwordTextField.text?.count ?? 3 <= 3){
+            isPassRightLength = false
+        } else {isPassRightLength = true}
+        UIView.animate(withDuration: 0.3,  animations: {self.passAlertLabel.alpha = self.isPassRightLength ? 0 : 1})
+        
+        if (emailTextField.text == email && passwordTextField.text == password){
         self.navigationController?.pushViewController(profileViewController, animated: true)
-       
+        } else {self.present(alert, animated: true)}
+        
     }
     
 
@@ -197,8 +222,12 @@ class LogInViewController: UIViewController {
         constraints.append(emailTextField.heightAnchor.constraint(equalToConstant: 49.5))
         constraints.append(betweenLine.heightAnchor.constraint(equalToConstant: 0.5))
         
+        constraints.append(passAlertLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 6))
+        constraints.append(passAlertLabel.leadingAnchor.constraint(equalTo: passwordTextField.leadingAnchor))
+        constraints.append(passAlertLabel.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor))
+        
         //Add logInButton constraints
-        constraints.append(logInButton.topAnchor.constraint(equalTo: textFieldsStackView.bottomAnchor, constant: 16))
+        constraints.append(logInButton.topAnchor.constraint(equalTo: passAlertLabel.bottomAnchor, constant: 6))
         constraints.append(logInButton.leadingAnchor.constraint(equalTo: textFieldsStackView.leadingAnchor))
         constraints.append(logInButton.trailingAnchor.constraint(equalTo: textFieldsStackView.trailingAnchor))
         constraints.append(logInButton.heightAnchor.constraint(equalToConstant: 50))

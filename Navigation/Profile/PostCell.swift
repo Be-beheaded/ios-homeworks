@@ -4,7 +4,8 @@ import UIKit
 
 class PostCell: UITableViewCell {
     
-
+   let tap = UITapGestureRecognizer()
+    
    private let authorLabel: UILabel = {
        let authorLabel = UILabel()
        authorLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +38,7 @@ class PostCell: UITableViewCell {
         descriptionLabel.setContentCompressionResistancePriority(UILayoutPriority(250), for: .vertical)
         return descriptionLabel
      }()
-    private let likesLabel: UILabel = {
+     let likesLabel: UILabel = {
         let likesLabel = UILabel()
         likesLabel.translatesAutoresizingMaskIntoConstraints = false
         likesLabel.font = UIFont.systemFont(ofSize: 16)
@@ -69,6 +70,10 @@ class PostCell: UITableViewCell {
         setupViews()
         addConstraints()
     }
+   private var likes: Int = 0
+   private var views: Int = 0
+    
+   var likeButtonAction : (() -> ())?
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -77,10 +82,22 @@ class PostCell: UITableViewCell {
     func setPosts(post: Post){
         authorLabel.text = post.author
         descriptionLabel.text = post.description
-        likesLabel.text = "Likes: \(String(post.likes))"
-        viewsLabel.text = "Views: \(String(post.views))"
+        likes = post.likes
+        views = post.views
+        likesLabel.text = "Likes: \(likes)"
+        viewsLabel.text = "Views: \(views)"
         postImageImageView.image = UIImage(named: post.image)
         
+    }
+    
+    func addLike(){
+        likes += 1
+        likesLabel.text = "Likes: \(likes)"
+    }
+    
+    func addViews(){
+        views += 1
+        viewsLabel.text = "Views: \(views)"
     }
     
     private func setupViews(){
@@ -92,6 +109,12 @@ class PostCell: UITableViewCell {
         self.contentView.addSubview(self.stackViewLikesViews)
         self.stackViewLikesViews.addArrangedSubview(self.likesLabel)
         self.stackViewLikesViews.addArrangedSubview(self.viewsLabel)
+        self.likesLabel.addGestureRecognizer(tap)
+        self.tap.addTarget(self, action: #selector(likeTap))
+    }
+    
+    @objc func likeTap(){
+        likeButtonAction?()
     }
     
     private func addConstraints() {
